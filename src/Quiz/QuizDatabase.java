@@ -32,6 +32,7 @@ public class QuizDatabase {
             }
     }
 }
+    
     public Connection getConnection() {
         return this.conn;
     }
