@@ -87,7 +87,7 @@ public class HowToPlayInterface extends javax.swing.JFrame {
         jLabel9.setText("If you answer incorrectly, you will take whatever and leave. ");
 
         returnButton.setBackground(new java.awt.Color(0, 0, 153));
-        returnButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\Joachim Terepo\\Documents\\NetBeansProjects\\COMP603_Assignment2.0\\images\\back logo.png")); // NOI18N
+        returnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Quiz/back logo.png"))); // NOI18N
         returnButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 returnButtonActionPerformed(evt);

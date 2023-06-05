@@ -50,7 +50,7 @@ public class QuizInterface extends javax.swing.JFrame {
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title.setText("Who Want's to be a Millionaire? ");
 
-        imageIcon.setIcon(new javax.swing.ImageIcon("C:\\Users\\Joachim Terepo\\Documents\\NetBeansProjects\\COMP603_Assignment2.0\\images\\logo.png")); // NOI18N
+        imageIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Quiz/logo.png"))); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(0, 102, 0));
 
