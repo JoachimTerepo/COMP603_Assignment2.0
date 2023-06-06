@@ -4,6 +4,7 @@
  */
 package Quiz;
 
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -18,8 +19,12 @@ public class GameInterface extends javax.swing.JFrame {
      */
     public GameInterface() {
         initComponents();
+    }  
+    
+    public void setupButtons(){
+        
     }
-
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

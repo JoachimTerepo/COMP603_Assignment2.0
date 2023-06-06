@@ -27,7 +27,7 @@ public class RandomQuestions {
         this.correctAnswer = correctAnswer;
     }
 
-    private RandomQuestions() {
+    public RandomQuestions() {
         
     }
         
@@ -100,4 +100,3 @@ public class RandomQuestions {
         }
     }
 }
-
