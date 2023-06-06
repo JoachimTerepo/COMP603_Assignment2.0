@@ -227,6 +227,9 @@ public class QuizInterface extends javax.swing.JFrame {
                 new QuizInterface().setVisible(true);
             }
         });
+        
+        QuizDatabase qd = new QuizDatabase();
+        qd.establishConnection();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

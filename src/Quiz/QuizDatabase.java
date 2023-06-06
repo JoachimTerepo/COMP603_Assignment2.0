@@ -25,7 +25,7 @@ public class QuizDatabase {
         qd.createQuestionTable();
     }
 
-    private void establishConnection() {
+    public void establishConnection() {
         if (this.conn == null) {
             try {
                 conn = DriverManager.getConnection(URL, USER_NAME, PASSWORD); 
