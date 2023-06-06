@@ -20,7 +20,9 @@ public class QuizDatabase {
     
     public static void main(String[] args) {
         QuizDatabase qd = new QuizDatabase();
-        System.out.println(qd.getConnection());
+        qd.establishConnection();
+        qd.createUserTable();
+        qd.createQuestionTable();
     }
 
     private void establishConnection() {
@@ -43,6 +45,50 @@ public class QuizDatabase {
                 conn.close();
             } catch (SQLException ex) {
                 Logger.getLogger(QuizDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public void createUserTable() {
+        try (Connection conn = DriverManager.getConnection(URL, USER_NAME, PASSWORD)) {
+            try (Statement statement = conn.createStatement()) {
+                String createTableSQL = "CREATE TABLE USERS("
+                        + "FIRSTNAME VARCHAR(50) NOT NULL, "
+                        + "LASTNAME VARCHAR(50) NOT NULL, "
+                        + "EARNED VARCHAR(50) NOT NULL"
+                        + ")";
+                statement.executeUpdate(createTableSQL);
+                System.out.println("User Table created successfully.");
+            }
+        } catch (SQLException e) {
+            if (e.getSQLState().equals("X0Y32")) {
+                // X0Y32 stops the program from creating more tables.
+                System.out.println("Table already exists.");
+            } else {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+        public void createQuestionTable() {
+        try (Connection conn = DriverManager.getConnection(URL, USER_NAME, PASSWORD)) {
+            try (Statement statement = conn.createStatement()) {
+                String createTableSQL = "CREATE TABLE QUESTIONS("
+                        + "QUESTION VARCHAR(200) NOT NULL, "
+                        + "FIRSTANSWER VARCHAR(30) NOT NULL, "
+                        + "SECONDANSWER VARCHAR(30) NOT NULL, "
+                        + "THRIDANSWER VARCHAR(30) NOT NULL, "
+                        + "CORRECTANSWER VARCHAR(30) NOT NULL"
+                        + ")";
+                statement.executeUpdate(createTableSQL);
+                System.out.println("Question Table created successfully.");
+            }
+        } catch (SQLException e) {
+            if (e.getSQLState().equals("X0Y32")) {
+                // X0Y32 stops the program from creating more tables.
+                System.out.println("Table already exists.");
+            } else {
+                e.printStackTrace();
             }
         }
     }
