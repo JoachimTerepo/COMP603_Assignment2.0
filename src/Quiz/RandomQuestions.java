@@ -59,8 +59,9 @@ public class RandomQuestions {
         Collections.shuffle(questions);
         
         List<RandomQuestions> tenQuestions = new ArrayList<>();
-        for (RandomQuestions q : questions){
-            tenQuestions.add(q);
+        
+        for (int i = 1; i < 10; i++){
+            tenQuestions.add(questions.get(i));
         }
 
         return tenQuestions;
