@@ -57,8 +57,13 @@ public class RandomQuestions {
 
         // Shuffle the questions randomly
         Collections.shuffle(questions);
+        
+        List<RandomQuestions> tenQuestions = new ArrayList<>();
+        for (RandomQuestions q : questions){
+            tenQuestions.add(q);
+        }
 
-        return questions;
+        return tenQuestions;
     }
 
     public String getQuestion() {
