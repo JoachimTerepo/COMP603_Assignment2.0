@@ -16,14 +16,14 @@ public class RandomQuestions {
     private String question;
     private String firstAnswer;
     private String secondAnswer;
-    private String thridAnswer;
+    private String thirdAnswer;
     private String correctAnswer;
     
-    public RandomQuestions (String question, String firstAnswer, String secondAnswer, String thridAnswer, String correctAnswer){
+    public RandomQuestions (String question, String firstAnswer, String secondAnswer, String thirdAnswer, String correctAnswer){
         this.question = question;
         this.firstAnswer = firstAnswer; 
         this.secondAnswer = secondAnswer;
-        this.thridAnswer = thridAnswer;
+        this.thirdAnswer = thirdAnswer;
         this.correctAnswer = correctAnswer;
     }
 
@@ -89,7 +89,7 @@ public class RandomQuestions {
     
     //Added commas so the user can read the options easy
     public String toString(){ 
-        return this.question + " " + this.firstAnswer + ", " + this.secondAnswer + ", " + this.thridAnswer + ", " + this.correctAnswer; 
+        return this.question + " " + this.firstAnswer + ", " + this.secondAnswer + ", " + this.thirdAnswer + ", " + this.correctAnswer; 
     }
     
     public static void main(String[] args) {
