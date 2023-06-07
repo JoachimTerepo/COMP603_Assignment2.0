@@ -79,8 +79,8 @@ public class RandomQuestions {
         return secondAnswer;
     }
 
-    public String getThridAnswer() {
-        return thridAnswer;
+    public String getThirdAnswer() {
+        return thirdAnswer;
     }
 
     public String getCorrectAnswer() {
