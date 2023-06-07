@@ -10,27 +10,28 @@ import java.util.Collections;
 import java.util.List;
 
 public class RandomQuestions {
+
     private static final String USER_NAME = "quiz";
     private static final String PASSWORD = "quiz";
     private static final String URL = "jdbc:derby:QuizDatabase;create=true";
     private String question;
     private String firstAnswer;
     private String secondAnswer;
-    private String thridAnswer;
+    private String thirdAnswer;
     private String correctAnswer;
-    
-    public RandomQuestions (String question, String firstAnswer, String secondAnswer, String thridAnswer, String correctAnswer){
+
+    public RandomQuestions(String question, String firstAnswer, String secondAnswer, String thirdAnswer, String correctAnswer) {
         this.question = question;
-        this.firstAnswer = firstAnswer; 
+        this.firstAnswer = firstAnswer;
         this.secondAnswer = secondAnswer;
-        this.thridAnswer = thridAnswer;
+        this.thirdAnswer = thirdAnswer;
         this.correctAnswer = correctAnswer;
     }
 
     public RandomQuestions() {
-        
+
     }
-        
+
     public List<RandomQuestions> getQuestionsFromDatabase() {
         List<RandomQuestions> questions = new ArrayList<>();
 
@@ -57,10 +58,10 @@ public class RandomQuestions {
 
         // Shuffle the questions randomly
         Collections.shuffle(questions);
-        
+
         List<RandomQuestions> tenQuestions = new ArrayList<>();
-        
-        for (int i = 1; i < 10; i++){
+
+        for (int i = 1; i < 10; i++) {
             tenQuestions.add(questions.get(i));
         }
 
@@ -79,24 +80,23 @@ public class RandomQuestions {
         return secondAnswer;
     }
 
-    public String getThridAnswer() {
-        return thridAnswer;
+    public String getThirdAnswer() {
+        return thirdAnswer;
     }
 
     public String getCorrectAnswer() {
         return correctAnswer;
     }
-    
-    
-    public String toString(){ 
-        return this.question + " " + this.firstAnswer + ", " + this.secondAnswer + ", " + this.thridAnswer + ", " + this.correctAnswer; 
+
+    public String toString() {
+        return this.question + " " + this.firstAnswer + ", " + this.secondAnswer + ", " + this.thirdAnswer + ", " + this.correctAnswer;
     }
-    
+
     public static void main(String[] args) {
         RandomQuestions rq = new RandomQuestions();
         List<RandomQuestions> rqList = rq.getQuestionsFromDatabase();
-        
-        for (RandomQuestions o : rqList){
+
+        for (RandomQuestions o : rqList) {
             System.out.println(o.toString());
         }
     }
