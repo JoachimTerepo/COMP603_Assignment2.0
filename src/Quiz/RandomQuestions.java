@@ -87,8 +87,9 @@ public class RandomQuestions {
         return correctAnswer;
     }
     
+    //Added commas so the user can read the options easy
     public String toString(){ 
-        return this.question + " " + this.firstAnswer + " " + this.secondAnswer + " " + this.thridAnswer + " " + this.correctAnswer; 
+        return this.question + " " + this.firstAnswer + ", " + this.secondAnswer + ", " + this.thridAnswer + ", " + this.correctAnswer; 
     }
     
     public static void main(String[] args) {
