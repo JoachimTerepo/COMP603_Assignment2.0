@@ -19,13 +19,19 @@ public class RandomQuestions {
     private String secondAnswer;
     private String thirdAnswer;
     private String correctAnswer;
+    private List<String> answerOptions;
 
     public RandomQuestions(String question, String firstAnswer, String secondAnswer, String thirdAnswer, String correctAnswer) {
         this.question = question;
+        answerOptions = new ArrayList<>();
         this.firstAnswer = firstAnswer;
         this.secondAnswer = secondAnswer;
         this.thirdAnswer = thirdAnswer;
         this.correctAnswer = correctAnswer;
+        answerOptions.add(firstAnswer);
+        answerOptions.add(secondAnswer);
+        answerOptions.add(thirdAnswer);
+        answerOptions.add(correctAnswer);
     }
 
     public RandomQuestions() {
@@ -87,7 +93,18 @@ public class RandomQuestions {
     public String getCorrectAnswer() {
         return correctAnswer;
     }
-
+    
+    public List<String> getAnswerOptions(){
+        return answerOptions;
+    }
+    
+    public void shuffleAnswerOptions() {
+        Collections.shuffle(answerOptions);
+    }
+    
+    public String getAnswerOptions(int i) {
+        return getAnswerOptions().get(i);
+    }
     public String toString() {
         return this.question + " " + this.firstAnswer + ", " + this.secondAnswer + ", " + this.thirdAnswer + ", " + this.correctAnswer;
     }
@@ -100,4 +117,6 @@ public class RandomQuestions {
             System.out.println(o.toString());
         }
     }
+
+    
 }

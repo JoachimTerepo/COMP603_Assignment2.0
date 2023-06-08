@@ -4,9 +4,13 @@
  */
 package Quiz;
 
+import java.util.Enumeration;
 import java.util.List;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 
 /**
  *
@@ -14,16 +18,17 @@ import javax.swing.JOptionPane;
  */
 public class GameInterface extends javax.swing.JFrame {
 
+    private List<RandomQuestions> rqList;
+    private int currentQuestionIndex;
+    private int earned;
+    private JRadioButton selectedRadioButton;
+    
     /**
      * Creates new form ResultsInterface
      */
     public GameInterface() {
         initComponents();
     }  
-    
-    public void setupButtons(){
-        
-    }
         
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,20 +39,25 @@ public class GameInterface extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        RandomQuestions rq = new RandomQuestions();
+        this.rqList = rq.getQuestionsFromDatabase();
+        int currentQuestionIndex = 0;
+        answerGroup = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         exitButton = new javax.swing.JButton();
-        correctOrIncorrect = new javax.swing.JLabel();
         returnButton = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        phoneCallButton = new javax.swing.JButton();
+        halfHalfButton = new javax.swing.JButton();
+        hallCallButton = new javax.swing.JButton();
+        answerOption1 = new javax.swing.JRadioButton();
+        answerOption2 = new javax.swing.JRadioButton();
+        answerOption3 = new javax.swing.JRadioButton();
+        answerOption4 = new javax.swing.JRadioButton();
         submitButton = new javax.swing.JButton();
+        questionLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,11 +84,6 @@ public class GameInterface extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setText("Q1)");
-
         jPanel3.setBackground(new java.awt.Color(0, 102, 0));
 
         exitButton.setBackground(new java.awt.Color(0, 102, 0));
@@ -89,15 +94,38 @@ public class GameInterface extends javax.swing.JFrame {
             }
         });
 
-        correctOrIncorrect.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        correctOrIncorrect.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        correctOrIncorrect.setText("CorrectOrIncorrect");
-
         returnButton.setBackground(new java.awt.Color(0, 102, 0));
         returnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Quiz/back logo.png"))); // NOI18N
         returnButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 returnButtonActionPerformed(evt);
+            }
+        });
+
+        phoneCallButton.setBackground(new java.awt.Color(0, 102, 0));
+        phoneCallButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        phoneCallButton.setText("Phone Call");
+        phoneCallButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phoneCallButtonActionPerformed(evt);
+            }
+        });
+
+        halfHalfButton.setBackground(new java.awt.Color(0, 102, 0));
+        halfHalfButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        halfHalfButton.setText("50/50");
+        halfHalfButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                halfHalfButtonActionPerformed(evt);
+            }
+        });
+
+        hallCallButton.setBackground(new java.awt.Color(0, 102, 0));
+        hallCallButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        hallCallButton.setText("Hall Call");
+        hallCallButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hallCallButtonActionPerformed(evt);
             }
         });
 
@@ -108,9 +136,13 @@ public class GameInterface extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(130, 130, 130)
-                .addComponent(correctOrIncorrect, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67)
+                .addComponent(phoneCallButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(halfHalfButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(hallCallButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71)
                 .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -118,24 +150,29 @@ public class GameInterface extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(correctOrIncorrect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(returnButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(exitButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(phoneCallButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(halfHalfButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(hallCallButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("jRadioButton1");
+        answerGroup.add(answerOption1);
+        answerOption1.setText("answerOption1");
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("jRadioButton2");
+        answerGroup.add(answerOption2);
+        answerOption2.setText("answerOption3");
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("jRadioButton3");
+        answerGroup.add(answerOption3);
+        answerOption3.setText("answerOption2");
 
-        buttonGroup1.add(jRadioButton4);
-        jRadioButton4.setText("jRadioButton4");
+        answerGroup.add(answerOption4);
+        answerOption4.setText("answerOption4");
 
         submitButton.setText("Submit");
         submitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -144,6 +181,12 @@ public class GameInterface extends javax.swing.JFrame {
             }
         });
 
+        questionLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        questionLabel.setForeground(new java.awt.Color(0, 0, 153));
+        questionLabel.setText("questionLabel");
+        showQuestion();
+        questionLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -151,35 +194,38 @@ public class GameInterface extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(77, 77, 77)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(answerOption3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(answerOption1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton4)
-                    .addComponent(jRadioButton2))
+                    .addComponent(answerOption4)
+                    .addComponent(answerOption2))
                 .addGap(135, 135, 135))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(276, 276, 276)
                 .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(questionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addComponent(questionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(answerOption1)
+                    .addComponent(answerOption2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton4)
-                    .addComponent(jRadioButton3))
+                    .addComponent(answerOption4)
+                    .addComponent(answerOption3))
                 .addGap(25, 25, 25)
                 .addComponent(submitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(24, 24, 24)
@@ -210,17 +256,73 @@ public class GameInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        // TODO add your handling code here:
+        submitButtonClicked();
     }//GEN-LAST:event_submitButtonActionPerformed
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
         if (JOptionPane.showConfirmDialog(frame, "Do you want to go back to Menu?", "Who Wants to be a Millionaire?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION){
             new QuizInterface().setVisible(true);
             this.dispose();
-        }
-        
+        } 
     }//GEN-LAST:event_returnButtonActionPerformed
 
+    private void hallCallButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hallCallButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hallCallButtonActionPerformed
+
+    private void halfHalfButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_halfHalfButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_halfHalfButtonActionPerformed
+
+    private void phoneCallButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneCallButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_phoneCallButtonActionPerformed
+
+     private void showQuestion() {
+        RandomQuestions currentQuestion = rqList.get(currentQuestionIndex);
+        questionLabel.setText(currentQuestion.getQuestion());
+        currentQuestion.shuffleAnswerOptions();
+        answerOption1.setText(currentQuestion.getAnswerOptions().get(0));
+        answerOption2.setText(currentQuestion.getAnswerOptions().get(1));
+        answerOption3.setText(currentQuestion.getAnswerOptions().get(2));
+        answerOption4.setText(currentQuestion.getAnswerOptions().get(3));
+    }
+
+    private void submitButtonClicked() {
+        if (answerGroup.getSelection() == null) {
+            JOptionPane.showMessageDialog(this, "Please select an answer.", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            ButtonModel selectedModel = answerGroup.getSelection();
+            // Find and store the selected radio button
+            Enumeration<AbstractButton> buttons = answerGroup.getElements();
+            while (buttons.hasMoreElements()) {
+                AbstractButton button = buttons.nextElement();
+                if (button.getModel() == selectedModel) {
+                    selectedRadioButton = (JRadioButton) button;
+                    break;
+                }
+            }
+            String selectedAnswer = selectedRadioButton.getText();
+            RandomQuestions currentQuestion = rqList.get(currentQuestionIndex);
+            if (selectedAnswer.equals(currentQuestion.getCorrectAnswer())) {
+                JOptionPane.showMessageDialog(this, "Correct answer!");
+                earned = earned + 100000;
+            } else {
+                JOptionPane.showMessageDialog(this, "Wrong answer. The correct answer is: " + currentQuestion.getCorrectAnswer());
+            }
+            // Move to the next question
+            currentQuestionIndex++;
+            if (currentQuestionIndex < rqList.size()) {
+                showQuestion();
+                answerGroup.clearSelection();
+            } else {
+                // No more questions, end the quiz or show a result
+                JOptionPane.showMessageDialog(this, "Quiz completed!");
+                // Add your logic to handle the end of the quiz
+            }
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -258,18 +360,20 @@ public class GameInterface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JLabel correctOrIncorrect;
+    private javax.swing.ButtonGroup answerGroup;
+    private javax.swing.JRadioButton answerOption1;
+    private javax.swing.JRadioButton answerOption2;
+    private javax.swing.JRadioButton answerOption3;
+    private javax.swing.JRadioButton answerOption4;
     private javax.swing.JButton exitButton;
+    private javax.swing.JButton halfHalfButton;
+    private javax.swing.JButton hallCallButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JButton phoneCallButton;
+    private javax.swing.JLabel questionLabel;
     private javax.swing.JButton returnButton;
     private javax.swing.JButton submitButton;
     // End of variables declaration//GEN-END:variables
