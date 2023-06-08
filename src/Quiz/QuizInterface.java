@@ -170,7 +170,9 @@ public class QuizInterface extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,13 +180,20 @@ public class QuizInterface extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void showUserName(){
-        welcomeLabel.setText("Welcome " + currentUser.getFirstName() + "!");
-    }
-        
-    private JFrame frame;
+    private void howToPlayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_howToPlayButtonActionPerformed
+        // TODO add your handling code here:
+        new HowToPlayInterface(currentUser).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_howToPlayButtonActionPerformed
+
+    private void playGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playGameButtonActionPerformed
+        new GameInterface(currentUser).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_playGameButtonActionPerformed
+
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         // TODO add your handling code here:
         frame = new JFrame("Exit");
@@ -193,17 +202,11 @@ public class QuizInterface extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_exitButtonActionPerformed
 
-    private void playGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playGameButtonActionPerformed
-        new GameInterface(currentUser).setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_playGameButtonActionPerformed
-
-    private void howToPlayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_howToPlayButtonActionPerformed
-        // TODO add your handling code here:
-        new HowToPlayInterface(currentUser).setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_howToPlayButtonActionPerformed
-
+    public void showUserName(){
+        welcomeLabel.setText("Welcome " + currentUser.getFirstName() + "!");
+    }
+        
+    private JFrame frame;
     /**
      * @param args the command line arguments
      */

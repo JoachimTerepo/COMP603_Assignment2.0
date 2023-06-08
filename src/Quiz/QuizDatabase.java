@@ -17,13 +17,6 @@ public class QuizDatabase {
     public QuizDatabase(){
         establishConnection();
     }
-    
-    public static void main(String[] args) {
-        QuizDatabase qd = new QuizDatabase();
-        qd.establishConnection();
-        qd.createUserTable();
-        qd.createQuestionTable();
-    }
 
     public void establishConnection() {
         if (this.conn == null) {
@@ -93,8 +86,6 @@ public class QuizDatabase {
         }
     }
         
-        
-    
     public ResultSet myQuery(String sql) {
 
         Connection connection = this.conn;

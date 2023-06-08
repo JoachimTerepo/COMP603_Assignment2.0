@@ -19,7 +19,7 @@ public class LoginInterface extends javax.swing.JFrame {
     public LoginInterface() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -118,7 +118,7 @@ public class LoginInterface extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(143, 143, 143)
                                 .addComponent(enterButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                         .addComponent(exitButton)))
                 .addContainerGap())
         );
@@ -158,6 +158,7 @@ public class LoginInterface extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private JFrame frame;
@@ -172,13 +173,19 @@ public class LoginInterface extends javax.swing.JFrame {
     private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterButtonActionPerformed
         String firstName = firstNameTextField.getText();
         String lastName = lastNameTextField.getText();
+        
+        if (firstName.isEmpty() || lastName.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please fill the text field.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
         if (isValidInput(firstName) && isValidInput(lastName)){
             User currentUser = new User(firstName, lastName);
             new QuizInterface(currentUser).setVisible(true);;
             this.dispose();
         }
         else{
-            JOptionPane.showMessageDialog(this, "Please enter only letters. (!@#$%^&*()) - These text including numbers are not valid.", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please enter only letters. (Numbers and empty space are also not valid as well.)", "Warning", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_enterButtonActionPerformed
 

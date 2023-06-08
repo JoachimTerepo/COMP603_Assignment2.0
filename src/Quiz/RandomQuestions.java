@@ -107,16 +107,5 @@ public class RandomQuestions {
     }
     public String toString() {
         return this.question + " " + this.firstAnswer + ", " + this.secondAnswer + ", " + this.thirdAnswer + ", " + this.correctAnswer;
-    }
-
-    public static void main(String[] args) {
-        RandomQuestions rq = new RandomQuestions();
-        List<RandomQuestions> rqList = rq.getQuestionsFromDatabase();
-
-        for (RandomQuestions o : rqList) {
-            System.out.println(o.toString());
-        }
-    }
-
-    
+    } 
 }
