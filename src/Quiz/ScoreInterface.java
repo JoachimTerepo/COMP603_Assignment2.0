@@ -13,6 +13,13 @@ import javax.swing.JOptionPane;
  */
 public class ScoreInterface extends javax.swing.JFrame {
 
+    private User currentUser;
+    
+    public ScoreInterface(User currentUser, int earned) {
+        this.currentUser = currentUser;
+        initComponents();
+    }
+    
     /**
      * Creates new form ScoreInterface
      */

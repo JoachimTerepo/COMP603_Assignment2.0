@@ -13,6 +13,15 @@ import javax.swing.JOptionPane;
  */
 public class ResultsInterface extends javax.swing.JFrame {
 
+    private User currentUser;
+    private int earned;
+    
+    public ResultsInterface(User currentUser, int earned) {
+        this.currentUser = currentUser;
+        this.earned = earned;
+        initComponents();
+    }
+    
     /**
      * Creates new form ResultsInterface
      */
@@ -33,7 +42,7 @@ public class ResultsInterface extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        earnedLabel = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         exitButton = new javax.swing.JButton();
         menuButton = new javax.swing.JButton();
@@ -68,11 +77,12 @@ public class ResultsInterface extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("You earned...");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("$1,000,000");
-        jLabel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 153), 3, true));
+        earnedLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        earnedLabel.setForeground(new java.awt.Color(0, 0, 153));
+        earnedLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        earnedLabel.setText("$1,000,000");
+        showEarned();
+        earnedLabel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 153), 3, true));
 
         jPanel3.setBackground(new java.awt.Color(0, 102, 0));
 
@@ -128,7 +138,7 @@ public class ResultsInterface extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(earnedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(206, 206, 206))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -139,7 +149,7 @@ public class ResultsInterface extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(earnedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -161,7 +171,7 @@ public class ResultsInterface extends javax.swing.JFrame {
     private JFrame frame;
     private void menuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtonActionPerformed
         // TODO add your handling code here:
-        new QuizInterface().setVisible(true);
+        new QuizInterface(currentUser).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_menuButtonActionPerformed
 
@@ -173,6 +183,9 @@ public class ResultsInterface extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_exitButtonActionPerformed
 
+    public void showEarned(){
+        earnedLabel.setText("$ " + earned);
+    }
     /**
      * @param args the command line arguments
      */
@@ -209,9 +222,9 @@ public class ResultsInterface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel earnedLabel;
     private javax.swing.JButton exitButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

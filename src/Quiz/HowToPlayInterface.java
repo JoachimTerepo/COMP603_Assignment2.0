@@ -13,6 +13,13 @@ import javax.swing.JOptionPane;
  */
 public class HowToPlayInterface extends javax.swing.JFrame {
 
+    private User currentUser;
+    
+    public HowToPlayInterface(User currentUser) {
+        this.currentUser = currentUser;
+        initComponents();
+    }
+    
     /**
      * Creates new form HowToPlayInterface
      */
@@ -174,7 +181,7 @@ private JFrame frame;
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
         // TODO add your handling code here:
-        new QuizInterface().setVisible(true);
+        new QuizInterface(currentUser).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_returnButtonActionPerformed
 

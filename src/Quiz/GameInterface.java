@@ -27,11 +27,15 @@ public final class GameInterface extends javax.swing.JFrame {
     private HalfAnswer hs = new HalfAnswer();
     private PhoneCall pc = new PhoneCall();
     
-    /**
+    private RandomQuestions currentQuestion; // Current question being displayed
+    
+    public GameInterface(User currentUser) {
+        this.currentUser = currentUser;
+        initComponents();
+    }
+     /**
      * Creates new form ResultsInterface
      */
-    private RandomQuestions currentQuestion; // Current question being displayed
-
     public GameInterface() {
         initComponents();
     }
@@ -268,7 +272,7 @@ public final class GameInterface extends javax.swing.JFrame {
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
         if (JOptionPane.showConfirmDialog(frame, "Do you want to go back to Menu?", "Who Wants to be a Millionaire?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION){
-            new QuizInterface().setVisible(true);
+            new QuizInterface(currentUser).setVisible(true);
             this.dispose();
         } 
     }//GEN-LAST:event_returnButtonActionPerformed
@@ -319,8 +323,7 @@ public final class GameInterface extends javax.swing.JFrame {
                 earned = earned + 100000;
             } else {
                 JOptionPane.showMessageDialog(this, "Wrong answer. The correct answer is: " + currentQuestion.getCorrectAnswer());
-                ResultsInterface ri = new ResultsInterface();
-                ri.setVisible(true);
+                new ResultsInterface(currentUser, earned).setVisible(true);;
                 this.dispose();
             }
             // Move to the next question
@@ -330,10 +333,9 @@ public final class GameInterface extends javax.swing.JFrame {
                 answerGroup.clearSelection();
             } else {
                 // No more questions, end the quiz or show a result
-                ResultsInterface ri = new ResultsInterface();
-                ri.setVisible(true);
+                JOptionPane.showMessageDialog(this, "Congrats! You have made it to the end!");
+                new ResultsInterface(currentUser, earned).setVisible(true);;
                 this.dispose();
-                // Add your logic to handle the end of the quiz
             }
         }
     }
