@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Thu Jun 08 20:58:35 NZST 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0188-9a3a-a90c-00001d14cb88 
+Thu Jun 08 22:34:31 NZST 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0188-9a92-7c45-00001ceb9880 
 on database directory C:\Users\Joachim Terepo\Documents\NetBeansProjects\COMP603_Assignment2.0\QuizDatabase with class loader sun.misc.Launcher$AppClassLoader@5c647e05 
 Loaded from file:/C:/Users/Joachim%20Terepo/Documents/NetBeansProjects/COMP603_Assignment2.0/lib/derby.jar
 java.vendor=Oracle Corporation
