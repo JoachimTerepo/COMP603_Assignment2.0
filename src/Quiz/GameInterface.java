@@ -22,6 +22,9 @@ public final class GameInterface extends javax.swing.JFrame {
     private int currentQuestionIndex;
     private int earned;
     private JRadioButton selectedRadioButton;
+    private HallAssitance ha = new HallAssitance();
+    private HalfAnswer hs = new HalfAnswer();
+    private PhoneCall pc = new PhoneCall();
     
     /**
      * Creates new form ResultsInterface
@@ -270,15 +273,18 @@ public final class GameInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void hallCallButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hallCallButtonActionPerformed
-        // TODO add your handling code here:
+        RandomQuestions currentQuestion = rqList.get(currentQuestionIndex);
+        JOptionPane.showMessageDialog(this, ha.LifeLine(currentQuestion));
     }//GEN-LAST:event_hallCallButtonActionPerformed
 
     private void halfHalfButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_halfHalfButtonActionPerformed
-        // TODO add your handling code here:
+        RandomQuestions currentQuestion = rqList.get(currentQuestionIndex);
+        JOptionPane.showMessageDialog(this, hs.LifeLine(currentQuestion));
     }//GEN-LAST:event_halfHalfButtonActionPerformed
 
     private void phoneCallButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneCallButtonActionPerformed
-        // TODO add your handling code here:
+        RandomQuestions currentQuestion = rqList.get(currentQuestionIndex);
+        JOptionPane.showMessageDialog(this, pc.LifeLine(currentQuestion));
     }//GEN-LAST:event_phoneCallButtonActionPerformed
 
      private void showQuestion() {

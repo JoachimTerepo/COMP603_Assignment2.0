@@ -12,7 +12,7 @@ public class HallAssitance extends LifeLine{
     @Override
     public String LifeLine(RandomQuestions question){
         //If the LifeLine has already been used, this if statement will stop them from accessing it.
-        if (used == true){
+        if (used){
            return "This Life-Line has already been used!"; 
         }
         //Created a StringBuilder in order to build the required variables for the lifeline.
@@ -20,11 +20,8 @@ public class HallAssitance extends LifeLine{
         
         sb.append("Hall Assitance Life Line:\n");
         for (int i = 0; i < 3; i++){
-            int j = i + 1;
-            sb.append(j);
-            sb.append(" ");
             sb.append(question.getAnswerOptions(i));
-            sb.append(" - 8.3% ");
+            sb.append(" - 8.3% \n");
         }
         
         sb.append(question.getCorrectAnswer());
