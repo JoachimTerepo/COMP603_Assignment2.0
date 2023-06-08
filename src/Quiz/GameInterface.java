@@ -30,7 +30,8 @@ public final class GameInterface extends javax.swing.JFrame {
 
     public GameInterface() {
         initComponents();
-    }  
+    }
+
         
     /**
      * This method is called from within the constructor to initialize the form.
