@@ -326,7 +326,9 @@ public final class GameInterface extends javax.swing.JFrame {
                 answerGroup.clearSelection();
             } else {
                 // No more questions, end the quiz or show a result
-                JOptionPane.showMessageDialog(this, "Quiz completed!");
+                ResultsInterface ri = new ResultsInterface();
+                ri.setVisible(true);
+                this.dispose();
                 // Add your logic to handle the end of the quiz
             }
         }

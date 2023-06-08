@@ -184,7 +184,9 @@ public class QuizInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void playGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playGameButtonActionPerformed
-        // TODO add your handling code here:
+        GameInterface gi = new GameInterface();
+        gi.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_playGameButtonActionPerformed
 
     private void howToPlayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_howToPlayButtonActionPerformed
