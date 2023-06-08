@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class RandomQuestions {
-
+    //This class creates the questions and randomize them.
     private static final String USER_NAME = "quiz";
     private static final String PASSWORD = "quiz";
     private static final String URL = "jdbc:derby:QuizDatabase;create=true";
@@ -21,6 +21,7 @@ public class RandomQuestions {
     private String correctAnswer;
     private List<String> answerOptions;
 
+    //Constructor to store the questions and use it inside the game interface.
     public RandomQuestions(String question, String firstAnswer, String secondAnswer, String thirdAnswer, String correctAnswer) {
         this.question = question;
         answerOptions = new ArrayList<>();
@@ -34,10 +35,15 @@ public class RandomQuestions {
         answerOptions.add(correctAnswer);
     }
 
+    //Constructor to access the methods.
     public RandomQuestions() {
 
     }
 
+    //This method returns a list of 10 different questions.
+    //This connects to the database on which stores the questions.
+    //It collects them, randomized it and selects the first 10 questions.
+    //After that it returns the 10 questions.
     public List<RandomQuestions> getQuestionsFromDatabase() {
         List<RandomQuestions> questions = new ArrayList<>();
 
@@ -67,13 +73,14 @@ public class RandomQuestions {
 
         List<RandomQuestions> tenQuestions = new ArrayList<>();
 
-        for (int i = 1; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             tenQuestions.add(questions.get(i));
         }
 
         return tenQuestions;
     }
 
+    //Normal Get methods.
     public String getQuestion() {
         return question;
     }
@@ -105,6 +112,8 @@ public class RandomQuestions {
     public String getAnswerOptions(int i) {
         return getAnswerOptions().get(i);
     }
+    
+    //toString to test.
     public String toString() {
         return this.question + " " + this.firstAnswer + ", " + this.secondAnswer + ", " + this.thirdAnswer + ", " + this.correctAnswer;
     } 
