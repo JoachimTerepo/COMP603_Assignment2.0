@@ -18,11 +18,19 @@ public class HalfAnswer extends LifeLine{
         }
         //Created a StringBuilder in order to build the required variables for the lifeline.
         StringBuilder sb = new StringBuilder();
-        Random rand = new Random();
-        int randomNum = rand.nextInt(3);
+        String diffAnswer;
+        
+        while (true){
+            Random rand = new Random();
+            int randomNum = rand.nextInt(4);
+            diffAnswer = question.getAnswerOptions(randomNum); 
+            if (!diffAnswer.equalsIgnoreCase(question.getCorrectAnswer())){
+                break;
+            }
+        }
         
         sb.append("50/50 Life Line: Used\n");
-        sb.append(question.getAnswerOptions(randomNum));
+        sb.append(diffAnswer);
         sb.append(" or ");
         sb.append(question.getCorrectAnswer());
         
