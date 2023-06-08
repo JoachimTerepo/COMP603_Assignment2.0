@@ -18,6 +18,7 @@ import javax.swing.JRadioButton;
  */
 public final class GameInterface extends javax.swing.JFrame {
 
+    private User currentUser;
     private List<RandomQuestions> rqList;
     private int currentQuestionIndex;
     private int earned;
@@ -287,7 +288,7 @@ public final class GameInterface extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, pc.LifeLine(currentQuestion));
     }//GEN-LAST:event_phoneCallButtonActionPerformed
 
-     private void showQuestion() {
+    private void showQuestion() {
         RandomQuestions currentQuestion = rqList.get(currentQuestionIndex);
         questionLabel.setText(currentQuestion.getQuestion());
         currentQuestion.shuffleAnswerOptions();
@@ -318,6 +319,9 @@ public final class GameInterface extends javax.swing.JFrame {
                 earned = earned + 100000;
             } else {
                 JOptionPane.showMessageDialog(this, "Wrong answer. The correct answer is: " + currentQuestion.getCorrectAnswer());
+                ResultsInterface ri = new ResultsInterface();
+                ri.setVisible(true);
+                this.dispose();
             }
             // Move to the next question
             currentQuestionIndex++;

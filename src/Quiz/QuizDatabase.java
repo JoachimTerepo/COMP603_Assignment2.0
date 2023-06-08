@@ -92,6 +92,8 @@ public class QuizDatabase {
             }
         }
     }
+        
+        
     
     public ResultSet myQuery(String sql) {
 

@@ -13,9 +13,15 @@ import javax.swing.JOptionPane;
  */
 public class QuizInterface extends javax.swing.JFrame {
 
+    private User currentUser;
     /**
      * Creates new form QuizInterface
      */
+    public QuizInterface(User currentUser) {
+        this.currentUser = currentUser;
+        initComponents();
+    }
+    
     public QuizInterface() {
         initComponents();
     }
@@ -35,7 +41,7 @@ public class QuizInterface extends javax.swing.JFrame {
         imageIcon = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         exitButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        welcomeLabel = new javax.swing.JLabel();
         playGameButton = new javax.swing.JButton();
         howToPlayButton = new javax.swing.JButton();
 
@@ -62,9 +68,10 @@ public class QuizInterface extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 51));
-        jLabel1.setText("Welcome User...");
+        welcomeLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        welcomeLabel.setForeground(new java.awt.Color(255, 255, 51));
+        welcomeLabel.setText("Welcome User...");
+        showUserName();
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -72,8 +79,8 @@ public class QuizInterface extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(welcomeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(exitButton)
                 .addContainerGap())
         );
@@ -85,7 +92,7 @@ public class QuizInterface extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(welcomeLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -173,6 +180,9 @@ public class QuizInterface extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void showUserName(){
+        welcomeLabel.setText("Welcome " + currentUser.getFirstName() + "!");
+    }
         
     private JFrame frame;
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
@@ -229,20 +239,17 @@ public class QuizInterface extends javax.swing.JFrame {
                 new QuizInterface().setVisible(true);
             }
         });
-        
-        QuizDatabase qd = new QuizDatabase();
-        qd.establishConnection();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitButton;
     private javax.swing.JButton howToPlayButton;
     private javax.swing.JLabel imageIcon;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JButton playGameButton;
     private javax.swing.JLabel title;
+    private javax.swing.JLabel welcomeLabel;
     // End of variables declaration//GEN-END:variables
 }
