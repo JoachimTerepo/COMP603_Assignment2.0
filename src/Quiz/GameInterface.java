@@ -12,17 +12,34 @@ import javax.swing.JOptionPane;
  *
  * @author Joachim Terepo
  */
-public class GameInterface extends javax.swing.JFrame {
+public final class GameInterface extends javax.swing.JFrame {
 
     /**
      * Creates new form ResultsInterface
      */
+    private RandomQuestions currentQuestion; // Current question being displayed
+
     public GameInterface() {
         initComponents();
-    }  
-    
-    public void setupButtons(){
-        
+        setupButtons(); // Call the setupButtons method to set up the initial question
+    }
+
+    public void setupButtons() {
+        RandomQuestions rq = new RandomQuestions();
+        List<RandomQuestions> questions = rq.getQuestionsFromDatabase();
+
+        if (!questions.isEmpty()) {
+            currentQuestion = questions.get(0); // Get the first question from the list
+
+            //Set the question and answer options in the interface components
+            jLabel3.setText("Q1) " + currentQuestion.getQuestion());
+            jRadioButton1.setText(currentQuestion.getFirstAnswer());
+            jRadioButton2.setText(currentQuestion.getSecondAnswer());
+            jRadioButton3.setText(currentQuestion.getThirdAnswer());
+            jRadioButton4.setText(currentQuestion.getCorrectAnswer());
+        } else {
+            JOptionPane.showMessageDialog(this, "No questions available");
+        }
     }
         
     /**
