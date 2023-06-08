@@ -16,7 +16,7 @@ import javax.swing.JRadioButton;
  *
  * @author Joachim Terepo
  */
-public class GameInterface extends javax.swing.JFrame {
+public final class GameInterface extends javax.swing.JFrame {
 
     private List<RandomQuestions> rqList;
     private int currentQuestionIndex;
@@ -26,6 +26,8 @@ public class GameInterface extends javax.swing.JFrame {
     /**
      * Creates new form ResultsInterface
      */
+    private RandomQuestions currentQuestion; // Current question being displayed
+
     public GameInterface() {
         initComponents();
     }  
