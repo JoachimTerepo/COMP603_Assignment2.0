@@ -70,7 +70,7 @@ public class LoginInterface extends javax.swing.JFrame {
         jLabel4.setText("Last Name:");
 
         exitButton.setBackground(new java.awt.Color(255, 255, 255));
-        exitButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\Joachim Terepo\\Documents\\NetBeansProjects\\COMP603_Assignment2.0\\images\\x icon.png")); // NOI18N
+        exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Quiz/x icon.png"))); // NOI18N
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitButtonActionPerformed(evt);
@@ -119,7 +119,6 @@ public class LoginInterface extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

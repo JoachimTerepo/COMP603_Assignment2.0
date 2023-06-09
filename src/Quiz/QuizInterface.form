@@ -185,7 +185,7 @@
                       <Color blue="0" green="66" red="0" type="rgb"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\Joachim Terepo\Documents\NetBeansProjects\COMP603_Assignment2.0\images\x icon.png"/>
+                      <Image iconType="3" name="/Quiz/x icon.png"/>
                     </Property>
                   </Properties>
                   <Events>

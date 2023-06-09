@@ -55,7 +55,7 @@ public class QuizInterface extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(0, 102, 0));
 
         exitButton.setBackground(new java.awt.Color(0, 102, 0));
-        exitButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\Joachim Terepo\\Documents\\NetBeansProjects\\COMP603_Assignment2.0\\images\\x icon.png")); // NOI18N
+        exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Quiz/x icon.png"))); // NOI18N
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitButtonActionPerformed(evt);
