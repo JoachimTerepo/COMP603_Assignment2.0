@@ -2,7 +2,7 @@ package Quiz;
 
 public class LifeLine {
     
-    //Created an Inheirtance System
+    //Created an Inheritance System
     private boolean used;
     
     public String LifeLine(RandomQuestions questions){
