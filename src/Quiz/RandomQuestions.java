@@ -79,6 +79,36 @@ public class RandomQuestions {
 
         return tenQuestions;
     }
+    
+    //This Code is for testing purposes.
+    public RandomQuestions getFirstQuestionsFromDatabase() {
+        List<RandomQuestions> questions = new ArrayList<>();
+
+        try {
+            Connection connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM QUESTIONS");
+
+            while (resultSet.next()) {
+                String questionText = resultSet.getString("QUESTION");
+                String answer1 = resultSet.getString("FIRSTANSWER");
+                String answer2 = resultSet.getString("SECONDANSWER");
+                String answer3 = resultSet.getString("THRIDANSWER");
+                String correctAnswer = resultSet.getString("CORRECTANSWER");
+
+                RandomQuestions question = new RandomQuestions(questionText, answer1, answer2, answer3, correctAnswer);
+                questions.add(question);
+            }
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        RandomQuestions firstQuestion = questions.get(0);
+
+        return firstQuestion;
+    }
 
     //Normal Get methods.
     public String getQuestion() {
@@ -117,4 +147,11 @@ public class RandomQuestions {
     public String toString() {
         return this.question + " " + this.firstAnswer + ", " + this.secondAnswer + ", " + this.thirdAnswer + ", " + this.correctAnswer;
     } 
+    
+    public static void main(String[] args) {
+        RandomQuestions rq = new RandomQuestions();
+        RandomQuestions question = rq.getFirstQuestionsFromDatabase();
+        
+        System.out.println(question.toString());
+    }
 }
